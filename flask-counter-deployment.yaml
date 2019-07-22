@@ -1,0 +1,20 @@
+kind: Deployment
+apiVersion: apps/v1beta1
+metadata:
+  name: flask-counter-app
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: flask-counter-app
+    spec:
+      containers:
+      - name: flask-counter-app
+        image: tarunbhardwaj/flask-counter-app
+        env:
+        - name: REDIS_URL
+          value: 'redis://redis-service:6379/0'
+        ports:
+        - containerPort: 5000
+
